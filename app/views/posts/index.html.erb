@@ -1,0 +1,43 @@
+<h1>New post</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', posts_path %>
+
+
+<h1>Listing Posts from Rails</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Content</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @posts.each do |post| %>
+  <tr>
+    <td><%= post.title %></td>
+    <td><%= post.content %></td>
+    <td><%= link_to 'Show', post %></td>
+    <td><%= link_to 'Edit', edit_post_path(post) %></td>
+    <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+
+
+<h1>Posts loaded from Backbone App</h1> 
+<div id="posts"></div>
+
+<script type="text/javascript">
+  $(function(){
+    window.router = new Blog.Routers.PostsRouter({posts: <%= @posts.to_json.html_safe -%>});
+    Backbone.history.start();
+  });
+
+</script>
