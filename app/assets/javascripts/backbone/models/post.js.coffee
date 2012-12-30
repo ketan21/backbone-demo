@@ -7,7 +7,7 @@ class Blog.Models.Post extends Backbone.Model
   
   initialize: ->
   	console.log "Initialized"
-  	@bind "change:content", @render
+  	@bind "change", @render
     	
       
 
